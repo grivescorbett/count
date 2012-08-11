@@ -1,7 +1,8 @@
+<script type="text/javascript" src="scripts/home.js"></script>  
 	<section id="box_list">
 		<ul id="box_commands">
-			<li><a href="#new_box">New Box</a></li>
-			<li><a href="#delete_box">Delete Box</a></li>
+			<li><a id="new_box" href="">New Box</a></li>
+			<li><a id="delete_box" href="">Delete Box</a></li>
 		</ul>
 		<table>
 			<caption>Box List</caption>
@@ -12,8 +13,8 @@
 	</section>
 	<section id="item_list">
 		<ul li="item_commands">
-			<li><a href="#new_item">New Item</a></li>
-			<li><a href="#delete_item">Delete Item</a></li>
+			<li><a id="new_item" href="">New Item</a></li>
+			<li><a id="delete_item" href="">Delete Item</a></li>
 		<table>
 			<caption>Item List</caption>
 			<tr id="item_1"><td>Item 1 Number</td><td>Item 1 Description</td></tr>
