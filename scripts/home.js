@@ -6,7 +6,7 @@ $(document).ready(function() {
 		{
 			$('.itemItem').remove();
 			$.each(data, function(key, val) {
-				$('#item_table tr:last').after('<tr class="boxItem" id="item:' + key + '"><td>' + val.count + '</td><td>' + val.upc + '</td><td>' + val.name + '</td></tr>');
+				$('#item_table tr:last').after('<tr class="itemItem" id="item:' + key + '"><td>' + val.count + '</td><td>' + val.upc + '</td><td>' + val.name + '</td></tr>');
 			});
 		});
 	}
@@ -18,7 +18,7 @@ $(document).ready(function() {
 			$('.boxItem').remove();
 			$('.itemItem').remove();
 			$.each(data, function(key, val) {
-				$('#box_table tr:last').after('<tr class="itemItem" id="box:' + key + '"><td>' + val.number + '</td><td>' + val.name + '</td></tr>');
+				$('#box_table tr:last').after('<tr class="boxItem" id="box:' + key + '"><td>' + val.number + '</td><td>' + val.name + '</td></tr>');
 				$('#box_table tr:last').click(function(e) {
 					refreshBoxContents($(this).attr("id").split(":")[1]);
 				});
