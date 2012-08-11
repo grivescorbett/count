@@ -1,9 +1,8 @@
 body {
 	background-color: #eee;
 	font: 12px "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
-	width: 75%;
-	margin: 0 auto;
-	
+	padding: 0 3em;
+	margin: 0;
 }
 
 ul {
@@ -59,4 +58,18 @@ ul.actions li {
 ul.navigation li {
 	display: inline;
 	padding: 0 .5em;
+}
+
+
+
+#newBoxNumber, #newBoxName {
+padding: .5em;
+}
+
+#newBoxNumber {
+width: 3em;
+}
+
+#newBoxName {
+width: 8em;
 }

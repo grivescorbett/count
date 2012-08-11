@@ -13,7 +13,7 @@
 			<li><a id="delete_box" href="" title="Delete Box">-</a></li>
 		</ul>
 		<table id="box_table">
-			<tr id="add_box"><td><input type="text" id="newBoxNumber" value="number"></input></td><td><input type="text" id="newBoxName" value="name"></input></td></tr>
+			<tr id="add_box"><td><input type="text" id="newBoxNumber" value="#"></input></td><td><input type="text" id="newBoxName" value="Name"></input></td></tr>
 		</table>
 	</section>
 	<section id="item_list">
