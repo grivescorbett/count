@@ -5,7 +5,7 @@ $(document).ready(function() {
 		{
 			$('.boxItem').remove();
 			$.each(data, function(key, val) {
-				$('#box_table tr:last').after('<tr class="boxItem"><td>' + key + '</td><td>' + val + '</td></tr>');
+				$('#box_table tr:last').after('<tr class="boxItem"><td>' + val + '</td><td>' + key + '</td></tr>');
 			});
 		});
 	}
