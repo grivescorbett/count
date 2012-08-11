@@ -17,9 +17,7 @@ li {
 }
 
 table {
-	margin: 0;
-	padding: 0;
-	border: none;
+	border-spacing: 0;
 }
 
 tr {
