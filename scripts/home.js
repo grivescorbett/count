@@ -1,4 +1,10 @@
 $(document).ready(function() {
+	
+	var refreshBoxContents = function(boxId)
+	{
+		
+	}
+	
 	var loadBoxes = function()
 	{
 		$.getJSON('/count/index.php/count/getBoxes', function(data)
@@ -6,6 +12,9 @@ $(document).ready(function() {
 			$('.boxItem').remove();
 			$.each(data, function(key, val) {
 				$('#box_table tr:last').after('<tr class="boxItem" id="box:' + key + '"><td>' + val.number + '</td><td>' + val.name + '</td></tr>');
+				$('#box_table tr:last').click(function(e) {
+					refreshBoxContents($(this).attr("id").split(":")[1]);
+				});
 			});
 		});
 	}

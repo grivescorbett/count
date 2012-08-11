@@ -75,10 +75,22 @@ class BoxedItem extends \Entities\BoxedItem implements \Doctrine\ORM\Proxy\Proxy
         return parent::getItem();
     }
 
+    public function setBox(\Entities\Box $box = NULL)
+    {
+        $this->__load();
+        return parent::setBox($box);
+    }
+
+    public function getBox()
+    {
+        $this->__load();
+        return parent::getBox();
+    }
+
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'count', 'item');
+        return array('__isInitialized__', 'id', 'count', 'item', 'box');
     }
 
     public function __clone()

@@ -16,3 +16,8 @@ Entities\BoxedItem:
             joinColumn:
                 name: item_id
                 referencedColumnName: id
+        box:
+            targetEntity: Box
+            joinColumn:
+                name: box_id
+                referencedColumnName: id
