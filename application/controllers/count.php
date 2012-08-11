@@ -38,7 +38,7 @@ class count extends CI_Controller {
 		$json = array();
 		foreach($boxes as $box)
 		{
-			$json[$box->getBoxName()] = $box->getBoxNumber();
+			$json[$box->getId()] = array ("name" => $box->getBoxName(), "number" => $box->getBoxNumber());
 		}
 		
 		echo json_encode($json, JSON_FORCE_OBJECT);
