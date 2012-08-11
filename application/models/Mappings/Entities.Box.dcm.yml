@@ -1,0 +1,21 @@
+Entities\Box:
+    type: entity
+    table: boxes
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        boxName:
+            type: string
+            length: 255
+            nullable: false
+        boxNumber:
+            type: integer
+            nullable: false
+    oneToMany:
+        boxedItems:
+            targetEntity: BoxedItem
+            mappedBy: box
+            cascade: ["persist", "merge"]

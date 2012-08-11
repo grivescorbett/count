@@ -1,0 +1,18 @@
+Entities\BoxedItem:
+    type: entity
+    table: boxedItems
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        count:
+            type: integer
+            nullable: false
+    oneToOne:
+        item:
+            targetEntity: Item
+            joinColumn:
+                name: item_id
+                referencedColumnName: id

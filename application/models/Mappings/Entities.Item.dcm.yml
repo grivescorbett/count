@@ -1,0 +1,16 @@
+Entities\Item:
+    type: entity
+    table: items
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        itemName:
+            type: string
+            length: 255
+            nullable: false
+        upc:
+            type: integer
+            nullable: false
