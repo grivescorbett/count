@@ -15,6 +15,34 @@ class count extends CI_Controller {
 		$this->load->view('pages/'.$page, $data);
 		$this->load->view('templates/footer', $data);
 	}
+	
+	public function addBox()
+	{
+		$boxName = $this->input->post('name');
+		$boxNumber = $this->input->post('number');
+		
+		$box = new Entities\Box;
+		$box->setBoxName($boxName);
+		$box->setBoxNumber($boxNumber);
+		$this->doctrine->em->persist($box);
+		$this->doctrine->em->flush();
+		
+		echo "yay";
+	}
+	
+	public function getBoxes()
+	{
+		
+		$boxes = $this->doctrine->em->getRepository("Entities\Box")->findAll();
+		
+		$json = array();
+		foreach($boxes as $box)
+		{
+			$json[$box->getBoxName()] = $box->getBoxNumber();
+		}
+		
+		echo json_encode($json, JSON_FORCE_OBJECT);
+	}
 }
 
 ?>

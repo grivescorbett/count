@@ -39,7 +39,6 @@
 */
 
 $route['default_controller'] = "count/view";
-$route['(:any)'] = 'count/view/$1';
 
 
 /* End of file routes.php */
