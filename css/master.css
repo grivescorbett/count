@@ -1,0 +1,47 @@
+body {
+	background-color: #fff;
+	font: 12px "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+	width: 80%;
+	margin: 10px auto;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+table {
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+tr {
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+td {
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+
+#box_list {
+	width: 20%;
+	float: left;
+}
+
+
+#item_list {
+	width: 80%;
+	float: right;
+}
