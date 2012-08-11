@@ -75,10 +75,22 @@ class Item extends \Entities\Item implements \Doctrine\ORM\Proxy\Proxy
         return parent::getUpc();
     }
 
+    public function addBoxedItem(\Entities\BoxedItem $itemTypes)
+    {
+        $this->__load();
+        return parent::addBoxedItem($itemTypes);
+    }
+
+    public function getItemTypes()
+    {
+        $this->__load();
+        return parent::getItemTypes();
+    }
+
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'itemName', 'upc');
+        return array('__isInitialized__', 'id', 'itemName', 'upc', 'itemTypes');
     }
 
     public function __clone()

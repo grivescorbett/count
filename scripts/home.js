@@ -2,7 +2,13 @@ $(document).ready(function() {
 	
 	var refreshBoxContents = function(boxId)
 	{
-		
+		$.getJSON('/count/index.php/count/getBoxItems/' + boxId, function(data)
+		{
+			$('.itemItem').remove();
+			$.each(data, function(key, val) {
+				$('#item_table tr:last').after('<tr class="boxItem" id="item:' + key + '"><td>' + val.count + '</td><td>' + val.upc + '</td><td>' + val.name + '</td></tr>');
+			});
+		});
 	}
 	
 	var loadBoxes = function()

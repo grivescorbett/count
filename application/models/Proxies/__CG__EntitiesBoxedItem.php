@@ -90,7 +90,7 @@ class BoxedItem extends \Entities\BoxedItem implements \Doctrine\ORM\Proxy\Proxy
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'count', 'item', 'box');
+        return array('__isInitialized__', 'id', 'count', 'box', 'item');
     }
 
     public function __clone()

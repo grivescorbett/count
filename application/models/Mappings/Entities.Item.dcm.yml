@@ -14,3 +14,8 @@ Entities\Item:
         upc:
             type: integer
             nullable: false
+    oneToMany:
+        itemTypes:
+            targetEntity: BoxedItem
+            mappedBy: item
+            cascade: ["persist", "merge"]

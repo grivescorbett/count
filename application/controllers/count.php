@@ -30,6 +30,22 @@ class count extends CI_Controller {
 		echo "yay";
 	}
 	
+	public function getBoxItems($boxId)
+	{
+		$box = $this->doctrine->em->find("Entities\Box", $boxId);
+		
+		$items = $box->getBoxedItems();
+		$json = array();
+		
+		foreach($items as $item)
+		{
+			$itemType = $item->getItem();
+			$json[$item->getId()] = array ( "count" => $item->getCount(), "item_id" => $itemType->getId(), "name" => $itemType->getItemName(), "upc" => $itemType->getUpc());
+		}
+		
+		echo json_encode($json, JSON_FORCE_OBJECT);
+	}
+	
 	public function getBoxes()
 	{
 		

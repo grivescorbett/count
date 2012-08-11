@@ -18,11 +18,8 @@
 	</section>
 	<section id="item_list">
 		<h2>Box 1 Contents</h2>
-		<table>
+		<table id="item_table">
 			<th>#</th><th>Quantity</th><th>Description</th>
-			<tr id="item_1"><td>Item 1 Number</td><td>Item 1 Quantity</td><td>Item 1 Description</td></tr>
-			<tr id="item_2"><td>Item 2 Number</td><td>Item 1 Quantity</td><td>Item 2 Description</td></tr>
-			<tr id="item_3"><td>Item 3 Number</td><td>Item 1 Quantity</td><td>Item 3 Description</td></tr>
 			</tr>
 		</table>
 	</section>
