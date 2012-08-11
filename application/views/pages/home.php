@@ -9,14 +9,11 @@
 	<section id="box_list">
 		<h2>Box List</h2>
 		<ul id="box_commands" class="actions">
-			<li><a id="new_box" href="" title="New Box">+</a></li>
+			<li><a id="new_box" href="" title="New Box" accesskey="n">+</a></li>
 			<li><a id="delete_box" href="" title="Delete Box">-</a></li>
 		</ul>
 		<table id="box_table">
-			<tr id="add_box"><td><input type="text" id="newBoxName" value="name"></input></td><td><input type="text" id="newBoxNumber" value="number"></input></td></tr>
-			<tr id="box_1" class="boxItem"><td><a href="#select_box_1">Box 1</a></td></tr>
-			<tr id="box_2" class="boxItem"><td><a href="#select_box_2">Box 2</a></td></tr>
-			<tr id="box_3" class="boxItem"><td><a href="#select_box_3">Box 3</a></td></tr>
+			<tr id="add_box"><td><input type="text" id="newBoxNumber" value="number"></input></td><td><input type="text" id="newBoxName" value="name"></input></td></tr>
 		</table>
 	</section>
 	<section id="item_list">
