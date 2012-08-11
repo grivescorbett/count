@@ -1,8 +1,9 @@
 body {
-	background-color: #fff;
+	background-color: #eee;
 	font: 12px "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
-	width: 80%;
-	margin: 10px auto;
+	width: 75%;
+	margin: 0 auto;
+	
 }
 
 ul {
@@ -45,8 +46,17 @@ td {
 	float: right;
 }
 
-
-
 ul.actions li {
 	display: inline;
+}
+
+#navigation {
+	background-color: #ddd;
+	padding: .5em;
+	text-align: center;
+	}
+
+ul.navigation li {
+	display: inline;
+	padding: 0 .5em;
 }
