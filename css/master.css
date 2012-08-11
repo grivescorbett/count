@@ -18,6 +18,7 @@ li {
 
 table {
 	border-spacing: 0;
+	text-align: left;
 }
 
 tr {
@@ -28,7 +29,7 @@ tr {
 
 td {
 	margin: 0;
-	padding: 0;
+	padding: 0 1em 0 0;
 	border: none;
 }
 
@@ -42,4 +43,10 @@ td {
 #item_list {
 	width: 80%;
 	float: right;
+}
+
+
+
+ul.actions li {
+	display: inline;
 }
