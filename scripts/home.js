@@ -16,8 +16,9 @@ $(document).ready(function() {
 		$.getJSON('/count/index.php/count/getBoxes', function(data)
 		{
 			$('.boxItem').remove();
+			$('.itemItem').remove();
 			$.each(data, function(key, val) {
-				$('#box_table tr:last').after('<tr class="boxItem" id="box:' + key + '"><td>' + val.number + '</td><td>' + val.name + '</td></tr>');
+				$('#box_table tr:last').after('<tr class="itemItem" id="box:' + key + '"><td>' + val.number + '</td><td>' + val.name + '</td></tr>');
 				$('#box_table tr:last').click(function(e) {
 					refreshBoxContents($(this).attr("id").split(":")[1]);
 				});
