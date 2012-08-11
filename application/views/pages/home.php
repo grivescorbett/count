@@ -1,4 +1,11 @@
 <script type="text/javascript" src="scripts/home.js"></script>  
+	<section id="navigation">
+		<ul class="navigation">
+			<li>Main</li>
+			<li>Reports</li>
+			<li>Settings</li>
+		</ul>
+	</section>
 	<section id="box_list">
 		<h2>Box List</h2>
 		<ul id="box_commands" class="actions">
@@ -14,7 +21,6 @@
 	</section>
 	<section id="item_list">
 		<h2>Box 1 Contents</h2>
-		<ul li="item_commands" class="actions">
 		<table>
 			<th>#</th><th>Quantity</th><th>Description</th>
 			<tr id="item_1"><td>Item 1 Number</td><td>Item 1 Quantity</td><td>Item 1 Description</td></tr>
