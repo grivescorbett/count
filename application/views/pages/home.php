@@ -19,7 +19,8 @@
 	<section id="item_list">
 		<h2>Box 1 Contents</h2>
 		<table id="item_table">
-			<th>#</th><th>Quantity</th><th>Description</th>
+			<th>Quantity</th><th>#</th><th>Description</th>
+			<tr id="add_item"><td><input type="text" id="newItemQuantity" value=""></input></td><td><input type="text" id="newItemUPC" value=""></input></td><td><input type="text" id="newItemDescription" value=""></input></td></tr>
 			</tr>
 		</table>
 	</section>

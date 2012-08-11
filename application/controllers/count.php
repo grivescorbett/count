@@ -59,6 +59,18 @@ class count extends CI_Controller {
 		
 		echo json_encode($json, JSON_FORCE_OBJECT);
 	}
+	
+	public function getItemCache()
+	{
+		$itemTypes = $this->doctrine->em->getRepository("Entities\Item")->findAll();
+		
+		$json = array();
+		foreach($itemTypes as $item)
+		{
+			$json[$item->getId()] = array ("upc" => $item->getUpc(), "name" => $item->getItemName());
+		}
+		echo json_encode($json, JSON_FORCE_OBJECT);
+	}
 }
 
 ?>
