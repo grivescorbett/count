@@ -6,7 +6,7 @@ $(document).ready(function() {
 		{
 			$('.itemItem').remove();
 			$.each(data, function(key, val) {
-				$('#item_table tr:last').after('<tr class="itemItem" id="item:' + key + '"><td>' + val.count + '</td><td>' + val.upc + '</td><td>' + val.name + '</td></tr>');
+				$('#item_table tr:last').after('<tr class="itemItem" id="item:' + key + '"><td>' + val.upc + '</td><td>' + val.count + '</td><td>' + val.name + '</td></tr>');
 			});
 		});
 	}
@@ -20,7 +20,8 @@ $(document).ready(function() {
 			$.each(data, function(key, val) {
 				$('#box_table tr:last').after('<tr class="boxItem" id="box:' + key + '"><td>' + val.number + '</td><td>' + val.name + '</td></tr>');
 				$('#box_table tr:last').click(function(e) {
-					refreshBoxContents($(this).attr("id").split(":")[1]);
+					currentBox = $(this).attr("id").split(":")[1];
+					refreshBoxContents(currentBox);
 				});
 			});
 		});
@@ -88,6 +89,15 @@ $(document).ready(function() {
 		return rval
 	}
 	
+	var getQtyForCurrentBox = function()
+	{
+		$.getJSON('/count/index.php/count/getBoxedItem/' + currentItem + '/' + currentBox, function(data)
+		{
+			editingBoxItem = data[""].id;
+			$("#newItemQuantity").val(data[""].count);
+		});
+	}
+	
 	$('#newItemUPC').keyup(function(event){
 		if (event.which == 13) {
 			event.preventDefault();
@@ -99,9 +109,10 @@ $(document).ready(function() {
 		else
 		{
 			var foundUpc = searchUpc($('#newItemUPC').val());
+			currentItem = foundUpc.key;
 			
 			if (foundUpc.key != -1)
-			{
+			{	
 				var idx = $('#newItemUPC').val().length;
 				
 				$('#newItemUPC').val(foundUpc.val.upc);
@@ -119,6 +130,14 @@ $(document).ready(function() {
 		}
 	});
 	
+	$('#newItemUPC').blur(function(e) {
+		getQtyForCurrentBox();	
+	});
+	
+	$('#newItemDescription').blur(function(e) {
+		getQtyForCurrentBox();	
+	});
+	
 	$('#newItemDescription').keyup(function(event){
 		if (event.which == 13) {
 			event.preventDefault();
@@ -130,6 +149,7 @@ $(document).ready(function() {
 		else
 		{
 			var foundName = searchName($('#newItemDescription').val());
+			currentItem = foundName.key;
 			
 			if (foundName.key != -1)
 			{
@@ -150,7 +170,12 @@ $(document).ready(function() {
 		}
 	});
 	
+	
+	
 	var upcCache;
+	var currentBox = -1;
+	var currentItem = -1;
+	var editingBoxItem = -1;
 	$.getJSON('/count/index.php/count/getItemCache', function(data)
 	{
 		upcCache = data;

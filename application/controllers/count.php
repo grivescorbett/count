@@ -71,6 +71,20 @@ class count extends CI_Controller {
 		}
 		echo json_encode($json, JSON_FORCE_OBJECT);
 	}
+	
+	public function getBoxedItem($itemId, $boxId)
+	{
+		/*$qb = $this->doctrine->em->createQueryBuilder();
+		$qb->sele
+			->add('from', 'BoxedItem i')
+			->add()*/
+		$q = $this->doctrine->em->createQuery("select i from Entities\\BoxedItem i where i.item=$itemId and i.box=$boxId");
+		$found = $q->getResult();
+		$boxedItem = $found[0];
+		
+		$json = array("" => array("id" => $boxedItem->getId(), "count" => $boxedItem->getCount()));
+		echo json_encode($json, JSON_FORCE_OBJECT);
+	}
 }
 
 ?>
