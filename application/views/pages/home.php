@@ -1,11 +1,3 @@
-<script type="text/javascript" src="scripts/home.js"></script>  
-	<section id="navigation">
-		<ul class="navigation">
-			<li>Main</li>
-			<li>Reports</li>
-			<li>Settings</li>
-		</ul>
-	</section>
 	<section id="box_list">
 		<h2>Box List</h2>
 		<ul id="box_commands" class="actions">
@@ -24,3 +16,4 @@
 			</tr>
 		</table>
 	</section>
+<script type="text/javascript" src="scripts/home.js"></script>  
