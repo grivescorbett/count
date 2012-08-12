@@ -61,6 +61,10 @@ ul.actions li {
 	color: #ddd;
 	}
 
+#navigation a {
+	color: #ddd
+	}
+
 ul.navigation li {
 	display: inline;
 	padding: 0 .5em;
