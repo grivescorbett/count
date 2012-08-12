@@ -39,6 +39,7 @@
 */
 
 $route['default_controller'] = "count/view";
+$route['report'] = "count/view/report";
 
 
 /* End of file routes.php */
