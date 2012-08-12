@@ -29,8 +29,8 @@ $(document).ready(function() {
 	
 	var addBox = function()
 	{
-		boxName = $('#newBoxName').val();
-		boxNumber = $('#newBoxNumber').val();
+		var boxName = $('#newBoxName').val();
+		var boxNumber = $('#newBoxNumber').val();
 		$.post('/count/index.php/count/addBox', {name: boxName, number: boxNumber}, function(data)
 		{
 			if (data != "yay")
@@ -42,6 +42,43 @@ $(document).ready(function() {
 				loadBoxes();
 			}
 		});
+	}
+	
+	var updateItem = function()
+	{
+		var itemUpc = $('#newItemUPC').val();
+		var itemName = $('#newItemDescription').val();
+		var qty = $('#newItemQuantity').val();
+		
+		if (currentItem == -1) //We need to add the item type
+		{
+			$.post('/count/index.php/count/createItem', {name: itemName, upc: itemUpc}, function(data)
+			{
+				currentItem = data;
+				
+				$.post('/count/index.php/count/createBoxedItem', {boxId: currentBox, itemId: currentItem, qty: qty}, function(data) {
+					refreshBoxContents(currentBox);
+				});
+			});
+		}
+		/*else
+		{
+			var deltaVal = $('#newItemDelta').val();
+			if (deltaVal != "")
+			{
+				switch (deltaVal[0])
+				{
+					case "-":
+					case "+":
+						
+					break;
+					default:
+						alert("bad input");
+				}
+			}
+		}*/
+		
+		
 	}
 	
 	$('#newBoxName').keydown(function(event){
@@ -98,11 +135,20 @@ $(document).ready(function() {
 		});
 	}
 	
+	$('#newItemQuantity').keyup(function(event) {
+		if (event.which == 13)
+		{
+			event.preventDefault();
+			updateItem();
+		}
+	});
+	
 	$('#newItemUPC').keyup(function(event){
 		if (event.which == 13) {
 			event.preventDefault();
+			updateItem();
 		}
-		else if (event.which == 8)
+		else if ((event.which == 8) || (event.which == 9))
 		{
 			
 		}
@@ -123,26 +169,30 @@ $(document).ready(function() {
 				$('#newItemUPC').focus();
 				$('#newItemUPC').setSelection(idx,  len);
 			}
-			else
-			{
-				$('#newItemDescription').val("");
-			}
 		}
 	});
 	
 	$('#newItemUPC').blur(function(e) {
-		getQtyForCurrentBox();	
+		if (currentItem != -1)
+		{
+			getQtyForCurrentBox();	
+		}
+		
 	});
 	
 	$('#newItemDescription').blur(function(e) {
-		getQtyForCurrentBox();	
+		if (currentItem != -1)
+		{
+			getQtyForCurrentBox();	
+		}
 	});
 	
 	$('#newItemDescription').keyup(function(event){
 		if (event.which == 13) {
 			event.preventDefault();
+			updateItem();
 		}
-		else if (event.which == 8)
+		else if ((event.which == 8) || (event.which == 9))
 		{
 			
 		}
@@ -162,10 +212,6 @@ $(document).ready(function() {
 				
 				$('#newItemDescription').focus();
 				$('#newItemDescription').setSelection(idx,  len);
-			}
-			else
-			{
-				$('#newItemUPC').val("");
 			}
 		}
 	});

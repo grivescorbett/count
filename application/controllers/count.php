@@ -85,6 +85,44 @@ class count extends CI_Controller {
 		$json = array("" => array("id" => $boxedItem->getId(), "count" => $boxedItem->getCount()));
 		echo json_encode($json, JSON_FORCE_OBJECT);
 	}
+	
+	public function createItem()
+	{
+		$itemName = $this->input->post('name');
+		$itemUPC = $this->input->post('upc');
+		
+		$item = new Entities\Item;
+		$item->setUpc($itemUPC);
+		$item->setItemName($itemName);
+		
+		$this->doctrine->em->persist($item);
+		$this->doctrine->em->flush();
+		
+		echo $item->getId();
+	}
+	
+	public function createBoxedItem()
+	{
+		$boxId = $this->input->post('boxId');
+		$itemId = $this->input->post('itemId');
+		$qty = $this->input->post('qty');
+		
+		$box = $this->doctrine->em->find("Entities\Box", $boxId);
+		$item = $this->doctrine->em->find("Entities\Item", $itemId);
+		
+		$boxedItem = new Entities\BoxedItem;
+		$boxedItem->setCount($qty);
+		$boxedItem->setBox($box);
+		$boxedItem->setItem($item);
+		
+		$this->doctrine->em->persist($boxedItem);
+		$this->doctrine->em->flush();
+	}
+	
+	public function updateBoxedItem()
+	{
+		//$boxedItem
+	}
 }
 
 ?>
