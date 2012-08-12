@@ -74,16 +74,21 @@ class count extends CI_Controller {
 	
 	public function getBoxedItem($itemId, $boxId)
 	{
-		/*$qb = $this->doctrine->em->createQueryBuilder();
-		$qb->sele
-			->add('from', 'BoxedItem i')
-			->add()*/
 		$q = $this->doctrine->em->createQuery("select i from Entities\\BoxedItem i where i.item=$itemId and i.box=$boxId");
 		$found = $q->getResult();
-		$boxedItem = $found[0];
 		
-		$json = array("" => array("id" => $boxedItem->getId(), "count" => $boxedItem->getCount()));
-		echo json_encode($json, JSON_FORCE_OBJECT);
+		if (count($found) > 0)
+		{
+			$boxedItem = $found[0];
+			$json = array("" => array("id" => $boxedItem->getId(), "count" => $boxedItem->getCount()));
+			echo json_encode($json, JSON_FORCE_OBJECT);
+		}
+		else
+		{
+			echo "-1";
+		}
+		
+		
 	}
 	
 	public function createItem()
@@ -101,27 +106,52 @@ class count extends CI_Controller {
 		echo $item->getId();
 	}
 	
-	public function createBoxedItem()
+	public function updateBoxedItem()
 	{
 		$boxId = $this->input->post('boxId');
 		$itemId = $this->input->post('itemId');
 		$qty = $this->input->post('qty');
+		$delta = $this->input->post('delta');
 		
 		$box = $this->doctrine->em->find("Entities\Box", $boxId);
 		$item = $this->doctrine->em->find("Entities\Item", $itemId);
 		
-		$boxedItem = new Entities\BoxedItem;
-		$boxedItem->setCount($qty);
-		$boxedItem->setBox($box);
-		$boxedItem->setItem($item);
+		$q = $this->doctrine->em->createQuery("select i from Entities\\BoxedItem i where i.item=$itemId and i.box=$boxId");
+		$found = $q->getResult();
 		
-		$this->doctrine->em->persist($boxedItem);
-		$this->doctrine->em->flush();
-	}
-	
-	public function updateBoxedItem()
-	{
-		//$boxedItem
+		if (count($found) == 0)
+		{
+			$boxedItem = new Entities\BoxedItem;
+			$boxedItem->setCount($qty);
+			$boxedItem->setBox($box);
+			$boxedItem->setItem($item);
+
+			$this->doctrine->em->persist($boxedItem);
+			$this->doctrine->em->flush();
+		}
+		else
+		{
+			$boxedItem = $found[0];
+			
+			if ($delta != "")
+			{
+				$qty = $boxedItem->getCount();
+				$deltaNum = intval(substr($delta, 1));
+				
+				if (substr($delta, 0, 1) == "+")
+				{
+					$qty += $deltaNum;
+				}
+				else
+				{
+					$qty -= $deltaNum;
+				}
+			}
+			
+			$boxedItem->setCount($qty);
+			$this->doctrine->em->persist($boxedItem);
+			$this->doctrine->em->flush();
+		}
 	}
 }
 

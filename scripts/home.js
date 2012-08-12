@@ -49,6 +49,7 @@ $(document).ready(function() {
 		var itemUpc = $('#newItemUPC').val();
 		var itemName = $('#newItemDescription').val();
 		var qty = $('#newItemQuantity').val();
+		var delta = $('#newItemDelta').val();
 		
 		if (currentItem == -1) //We need to add the item type
 		{
@@ -56,27 +57,29 @@ $(document).ready(function() {
 			{
 				currentItem = data;
 				
-				$.post('/count/index.php/count/createBoxedItem', {boxId: currentBox, itemId: currentItem, qty: qty}, function(data) {
+				$.post('/count/index.php/count/updateBoxedItem', {boxId: currentBox, itemId: currentItem, qty: qty, delta: delta}, function(data) {
 					refreshBoxContents(currentBox);
+					getQtyForCurrentBox();	
 				});
 			});
 		}
-		/*else
+		else
 		{
 			var deltaVal = $('#newItemDelta').val();
 			if (deltaVal != "")
 			{
-				switch (deltaVal[0])
+				if ((deltaVal[0] != '-') && (deltaVal[0] != '+'))
 				{
-					case "-":
-					case "+":
-						
-					break;
-					default:
-						alert("bad input");
+					alert("Bad Input in Delta");
+					return;
 				}
 			}
-		}*/
+			
+			$.post('/count/index.php/count/updateBoxedItem', {boxId: currentBox, itemId: currentItem, qty: qty, delta: delta}, function(data) {
+				refreshBoxContents(currentBox);
+				getQtyForCurrentBox();	
+			});
+		}
 		
 		
 	}
@@ -128,14 +131,26 @@ $(document).ready(function() {
 	
 	var getQtyForCurrentBox = function()
 	{
-		$.getJSON('/count/index.php/count/getBoxedItem/' + currentItem + '/' + currentBox, function(data)
+		$.get('/count/index.php/count/getBoxedItem/' + currentItem + '/' + currentBox, function(data)
 		{
-			editingBoxItem = data[""].id;
-			$("#newItemQuantity").val(data[""].count);
+			if (data != "-1")
+			{
+				json = $.parseJSON(data);
+				editingBoxItem = json[""].id;
+				$("#newItemQuantity").val(json[""].count);
+			}
 		});
 	}
 	
 	$('#newItemQuantity').keyup(function(event) {
+		if (event.which == 13)
+		{
+			event.preventDefault();
+			updateItem();
+		}
+	});
+	
+	$('#newItemDelta').keyup(function(event) {
 		if (event.which == 13)
 		{
 			event.preventDefault();
